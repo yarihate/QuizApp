@@ -5,17 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="50dp"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Hello World!"
-        android:textSize="30sp"
-        android:background="#e0e0e0"
+        android:hint="Введите Email"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Отправить"
+        app:layout_constraintLeft_toRightOf="@id/editText"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
