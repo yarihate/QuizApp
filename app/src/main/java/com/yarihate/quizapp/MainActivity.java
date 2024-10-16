@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // загрузка интерфейса из файла activity_main.xml
-        setContentView(R.layout.scroll_view_test);
+        setContentView(R.layout.activity_main);
 
 
 //        setContentView(R.layout.second_layout);
