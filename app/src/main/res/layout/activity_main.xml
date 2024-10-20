@@ -1,20 +1,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_image">
+    android:background="#33658A">
 
     <!-- Текст заголовка -->
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Unleash Your Brain Power. Quiz Time!"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
-        android:fontFamily="Unica-one"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/unica_one"
+        android:text="Unleash Your Brain Power.\nQuiz Time!"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <!-- Кнопка Start -->
     <Button
