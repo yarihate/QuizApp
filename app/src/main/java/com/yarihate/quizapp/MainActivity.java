@@ -1,24 +1,27 @@
 package com.yarihate.quizapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // загрузка интерфейса из файла activity_main.xml
         setContentView(R.layout.activity_main);
 
 
-//        setContentView(R.layout.second_layout);
-//        TextView textView = findViewById(R.id.header);
-//        // переустанавливаем у него текст
-//        textView.setText("Hello from Java!");
+        Button btn = findViewById(R.id.startButton);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NewActivity.class));
+            }
+        });
     }
 }

@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#33658A">
+    android:background="#33658A"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Текст заголовка -->
     <TextView
@@ -11,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
         android:fontFamily="@font/unica_one"
-        android:text="Unleash Your Brain Power.\nQuiz Time!"
+        android:text="Unleash Your Brain Power.\nВремя квиза!"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -19,6 +20,7 @@
     <!-- Кнопка Start -->
     <Button
         android:id="@+id/startButton"
+        android:onClick="sendMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start"
