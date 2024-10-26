@@ -7,19 +7,19 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CategoryActivity extends AppCompatActivity {
+public class ChooseQuizActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.geography_activity);
+        setContentView(R.layout.choose_quiz_activity);
 
 
         LinearLayout layout = findViewById(R.id.baltic);
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CategoryActivity.this, QuestionActivity.class));
+                startActivity(new Intent(ChooseQuizActivity.this, QuestionActivity.class));
             }
         });
     }

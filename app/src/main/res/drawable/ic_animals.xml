@@ -1,4 +1,5 @@
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ic_animals_id"
     android:src="@mipmap/ic_animals"
     android:tileMode="disabled"
     android:gravity="fill"/>

@@ -1,4 +1,14 @@
 <resources>
     <color name="background_color">#2A2E43</color>
     <color name="button_color">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="aqua_mint">#1AC6A9</color>
+    <color name="lavender">#D6A4E8</color>
+    <color name="blush">#F4C2C2</color>
+    <color name="minty">#98FF98</color>
+    <color name="goldie">#F4C430</color>
+    <color name="sky_lite">#A4DCE8</color>
+    <color name="lime_mist">#A7E8A4</color>
 </resources>
+
+
