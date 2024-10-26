@@ -4,42 +4,15 @@
     android:background="@color/background_color"
     android:orientation="vertical">
 
-    <!-- Scrollable container for quiz categories -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
         <LinearLayout
+            android:id="@+id/quiz_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Baltic Card -->
-            <LinearLayout
-                android:id="@+id/baltic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/card_background"
-                android:backgroundTint="#1AC6A9"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baltic" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Страны Балтии"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-        </LinearLayout>
+            android:orientation="vertical" />
     </ScrollView>
 </LinearLayout>

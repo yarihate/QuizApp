@@ -12,7 +12,7 @@ public class CategoryService {
 
     static {
         categories = new ArrayList<>();
-        categories.add(new Category.Builder()
+        categories.add(new Category.Builder().setId(1)
                 .setName("География")
                 .setIcon(R.drawable.ic_geography)
                 .setQuizQuantity(20)
@@ -30,7 +30,7 @@ public class CategoryService {
                         .setTitleColor(R.color.black)
                         .build()))
                 .build());
-        categories.add(new Category.Builder()
+        categories.add(new Category.Builder().setId(2)
                 .setName("История")
                 .setIcon(R.drawable.ic_history)
                 .setQuizQuantity(20)
@@ -39,7 +39,7 @@ public class CategoryService {
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
                 .build());
-        categories.add(new Category.Builder()
+        categories.add(new Category.Builder().setId(3)
                 .setName("Английский язык")
                 .setIcon(R.drawable.ic_english_lang)
                 .setQuizQuantity(20)
@@ -48,7 +48,7 @@ public class CategoryService {
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
                 .build());
-        categories.add(new Category.Builder()
+        categories.add(new Category.Builder().setId(4)
                 .setName("Флаги")
                 .setIcon(R.drawable.ic_flags)
                 .setQuizQuantity(20)
@@ -57,7 +57,7 @@ public class CategoryService {
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
                 .build());
-        categories.add(new Category.Builder()
+        categories.add(new Category.Builder().setId(5)
                 .setName("Животные")
                 .setIcon(R.drawable.ic_animals)
                 .setQuizQuantity(20)
@@ -66,7 +66,7 @@ public class CategoryService {
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
                 .build());
-        categories.add(new Category.Builder()
+        categories.add(new Category.Builder().setId(6)
                 .setName("Русский язык")
                 .setIcon(R.drawable.ic_russian_lang)
                 .setQuizQuantity(20)
@@ -75,7 +75,7 @@ public class CategoryService {
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
                 .build());
-        categories.add(new Category.Builder()
+        categories.add(new Category.Builder().setId(7)
                 .setName("Музыка")
                 .setIcon(R.drawable.ic_music)
                 .setQuizQuantity(20)
@@ -84,7 +84,7 @@ public class CategoryService {
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
                 .build());
-        categories.add(new Category.Builder()
+        categories.add(new Category.Builder().setId(8)
                 .setName("Кино")
                 .setIcon(R.drawable.ic_movie)
                 .setQuizQuantity(20)

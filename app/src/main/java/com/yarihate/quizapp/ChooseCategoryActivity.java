@@ -31,7 +31,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
             categoryCard.setOnClickListener(v -> {
                 Category selectedCategory = (Category) v.getTag();
                 Intent intent = new Intent(ChooseCategoryActivity.this, ChooseQuizActivity.class);
-                intent.putExtra("category_title", selectedCategory.getTitle());
+                intent.putExtra("category_id", selectedCategory.getId());
                 startActivity(intent);
             });
         });
