@@ -1,0 +1,65 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_color"
+    android:padding="16dp">
+
+    <!-- Question text -->
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Какой столицей является Рига?"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Answer Buttons -->
+    <Button
+        android:id="@+id/answer_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Латвия"
+        android:background="@drawable/answer_background"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/answer_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Литва"
+        android:background="@drawable/answer_background"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/answer_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Эстония"
+        android:background="@drawable/answer_background"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/answer_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Польша"
+        android:background="@drawable/answer_background"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/submit_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ответить"
+        android:background="@drawable/answer_background"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="32dp"/>
+</LinearLayout>

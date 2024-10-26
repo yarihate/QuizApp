@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2A2E43"
+    android:background="@color/background_color"
     android:orientation="vertical">
 
     <!-- Search bar -->
@@ -22,6 +22,7 @@
         android:padding="16dp">
 
         <LinearLayout
+            android:id="@+id/geography"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

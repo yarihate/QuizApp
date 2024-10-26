@@ -4,30 +4,30 @@
     android:background="#33658A"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Текст заголовка -->
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:fontFamily="@font/unica_one"
-        android:text="Unleash Your Brain Power.\nВремя квиза!"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+<!--    &lt;!&ndash; Текст заголовка &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/titleText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="150dp"-->
+<!--        android:fontFamily="@font/unica_one"-->
+<!--        android:text="Unleash Your Brain Power.\nВремя квиза!"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textStyle="bold" />-->
 
-    <!-- Кнопка Start -->
-    <Button
-        android:id="@+id/startButton"
-        android:onClick="sendMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:textColor="@android:color/white"
-        android:background="@drawable/rounded_button"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"/>
+<!--    &lt;!&ndash; Кнопка Start &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/startButton"-->
+<!--        android:onClick="sendMessage"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Start"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        android:background="@drawable/rounded_button"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginEnd="16dp"/>-->
 </RelativeLayout>
