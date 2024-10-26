@@ -1,5 +1,6 @@
 package com.yarihate.quizapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,7 +23,18 @@ public class ChooseCategoryActivity extends AppCompatActivity {
 
         List<Category> categories = CategoryService.getCategories();
 
-        categories.forEach(category -> categoryLayout.addView(createCategoryCard(category)));
+        categories.forEach(category -> {
+            LinearLayout categoryCard = createCategoryCard(category);
+            categoryCard.setTag(category);
+            categoryLayout.addView(categoryCard);
+
+            categoryCard.setOnClickListener(v -> {
+                Category selectedCategory = (Category) v.getTag();
+                Intent intent = new Intent(ChooseCategoryActivity.this, ChooseQuizActivity.class);
+                intent.putExtra("category_title", selectedCategory.getTitle());
+                startActivity(intent);
+            });
+        });
     }
 
     private LinearLayout createCategoryCard(Category category) {

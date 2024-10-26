@@ -2,6 +2,7 @@ package com.yarihate.quizapp.service;
 
 import com.yarihate.quizapp.R;
 import com.yarihate.quizapp.dto.Category;
+import com.yarihate.quizapp.dto.Quiz;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,15 @@ public class CategoryService {
                 .setBackgroundColor(R.color.aqua_mint)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
+                .setQuizList(List.of(new Quiz.Builder()
+                        .setCategoryTitle("География")
+                        .setTitle("Страны Балтии")
+                        .setIcon(R.drawable.ic_baltic)
+                        .setStarsQuantity(0)
+                        .setDifficulty(0)
+                        .setBackgroundColor(R.color.aqua_mint) //todo наследовать из категории
+                        .setTitleColor(R.color.black)
+                        .build()))
                 .build());
         categories.add(new Category.Builder()
                 .setName("История")

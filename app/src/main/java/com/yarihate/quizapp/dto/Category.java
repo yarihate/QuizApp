@@ -1,5 +1,7 @@
 package com.yarihate.quizapp.dto;
 
+import java.util.List;
+
 public class Category { //todo можно разделить на состояние интерфейса и бизнес данные
     private String title;
     private int icon;
@@ -8,6 +10,7 @@ public class Category { //todo можно разделить на состоян
     private int backgroundColor;
     private int titleColor;
     private int subtitleColor;
+    private List<Quiz> quizList;
 
     private Category(Builder builder) {
         this.title = builder.name;
@@ -17,6 +20,7 @@ public class Category { //todo можно разделить на состоян
         this.backgroundColor = builder.backgroundColor;
         this.titleColor = builder.titleColor;
         this.subtitleColor = builder.subtitleColor;
+        this.quizList = builder.quizList;
     }
 
     public String getTitle() {
@@ -47,6 +51,10 @@ public class Category { //todo можно разделить на состоян
         return subtitleColor;
     }
 
+    public List<Quiz> getQuizList() {
+        return quizList;
+    }
+
     public static class Builder {
         private String name;
         private int icon;
@@ -55,6 +63,7 @@ public class Category { //todo можно разделить на состоян
         private int backgroundColor;
         private int titleColor;
         private int subtitleColor;
+        private List<Quiz> quizList;
 
         public Builder setName(String name) {
             this.name = name;
@@ -88,6 +97,11 @@ public class Category { //todo можно разделить на состоян
 
         public Builder setSubtitleColor(int subtitleColor) {
             this.subtitleColor = subtitleColor;
+            return this;
+        }
+
+        public Builder setQuizList(List<Quiz> quizList) {
+            this.quizList = quizList;
             return this;
         }
 
