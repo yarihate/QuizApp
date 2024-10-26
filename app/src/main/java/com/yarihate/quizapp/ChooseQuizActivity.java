@@ -59,7 +59,7 @@ public class ChooseQuizActivity extends AppCompatActivity {
         ));
         card.setOrientation(LinearLayout.HORIZONTAL);
         card.setBackgroundResource(R.drawable.card_background);
-        card.setBackgroundTintList(ColorStateList.valueOf(quiz.getBackgroundColor()));
+        card.setBackgroundTintList(getResources().getColorStateList(quiz.getBackgroundColor()));
         card.setPadding(16, 16, 16, 16);
         card.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,

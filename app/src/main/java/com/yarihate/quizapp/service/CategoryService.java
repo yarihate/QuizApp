@@ -74,6 +74,15 @@ public class CategoryService {
                 .setBackgroundColor(R.color.minty)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
+                .setQuizList(List.of(new Quiz.Builder()
+                        .setCategoryTitle("Флаги")
+                        .setTitle("Азия")
+                        //.setIcon(R.drawable.ic_baltic)
+                        .setStarsQuantity(0)
+                        .setDifficulty(0)
+                        .setBackgroundColor(R.color.minty) //todo наследовать из категории
+                        .setTitleColor(R.color.black)
+                        .build()))
                 .build());
         categories.add(new Category.Builder().setId(5)
                 .setName("Животные")

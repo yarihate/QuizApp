@@ -48,7 +48,6 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         card.setOrientation(LinearLayout.HORIZONTAL);
         card.setPadding(16, 16, 16, 16);
         card.setBackgroundResource(R.drawable.card_background);
-        card.setBackgroundColor(category.getTitleColor());
         card.setBackgroundTintList(getResources().getColorStateList(category.getBackgroundColor()));
 
         ImageView icon = new ImageView(this);
