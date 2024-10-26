@@ -38,6 +38,15 @@ public class CategoryService {
                 .setBackgroundColor(R.color.lavender)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
+                .setQuizList(List.of(new Quiz.Builder()
+                        .setCategoryTitle("История")
+                        .setTitle("Древний Египет")
+                        //.setIcon(R.drawable.ic_baltic)
+                        .setStarsQuantity(0)
+                        .setDifficulty(0)
+                        .setBackgroundColor(R.color.lavender) //todo наследовать из категории
+                        .setTitleColor(R.color.black)
+                        .build()))
                 .build());
         categories.add(new Category.Builder().setId(3)
                 .setName("Английский язык")
@@ -47,6 +56,15 @@ public class CategoryService {
                 .setBackgroundColor(R.color.blush)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
+                .setQuizList(List.of(new Quiz.Builder()
+                        .setCategoryTitle("Английский язык")
+                        .setTitle("B1")
+                        //.setIcon(R.drawable.ic_baltic)
+                        .setStarsQuantity(0)
+                        .setDifficulty(0)
+                        .setBackgroundColor(R.color.blush) //todo наследовать из категории
+                        .setTitleColor(R.color.black)
+                        .build()))
                 .build());
         categories.add(new Category.Builder().setId(4)
                 .setName("Флаги")
@@ -65,6 +83,15 @@ public class CategoryService {
                 .setBackgroundColor(R.color.goldie)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
+                .setQuizList(List.of(new Quiz.Builder()
+                        .setCategoryTitle("Животные")
+                        .setTitle("Морские обитатели")
+                        //.setIcon(R.drawable.ic_baltic)
+                        .setStarsQuantity(0)
+                        .setDifficulty(0)
+                        .setBackgroundColor(R.color.goldie) //todo наследовать из категории
+                        .setTitleColor(R.color.black)
+                        .build()))
                 .build());
         categories.add(new Category.Builder().setId(6)
                 .setName("Русский язык")
@@ -74,6 +101,15 @@ public class CategoryService {
                 .setBackgroundColor(R.color.sky_lite)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
+                .setQuizList(List.of(new Quiz.Builder()
+                        .setCategoryTitle("Русский язык")
+                        .setTitle("Семантика слов")
+                        //.setIcon(R.drawable.ic_baltic)
+                        .setStarsQuantity(0)
+                        .setDifficulty(0)
+                        .setBackgroundColor(R.color.sky_lite) //todo наследовать из категории
+                        .setTitleColor(R.color.black)
+                        .build()))
                 .build());
         categories.add(new Category.Builder().setId(7)
                 .setName("Музыка")
@@ -83,6 +119,15 @@ public class CategoryService {
                 .setBackgroundColor(R.color.lime_mist)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
+                .setQuizList(List.of(new Quiz.Builder()
+                        .setCategoryTitle("Музыка")
+                        .setTitle("90-е")
+                        //.setIcon(R.drawable.ic_baltic)
+                        .setStarsQuantity(0)
+                        .setDifficulty(0)
+                        .setBackgroundColor(R.color.lime_mist) //todo наследовать из категории
+                        .setTitleColor(R.color.black)
+                        .build()))
                 .build());
         categories.add(new Category.Builder().setId(8)
                 .setName("Кино")
@@ -92,6 +137,15 @@ public class CategoryService {
                 .setBackgroundColor(R.color.lime_mist)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
+                .setQuizList(List.of(new Quiz.Builder()
+                        .setCategoryTitle("Кино")
+                        .setTitle("Триллеры")
+                        //.setIcon(R.drawable.ic_baltic)
+                        .setStarsQuantity(0)
+                        .setDifficulty(0)
+                        .setBackgroundColor(R.color.lime_mist) //todo наследовать из категории
+                        .setTitleColor(R.color.black)
+                        .build()))
                 .build());
     }
 
