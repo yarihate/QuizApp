@@ -1,42 +1,125 @@
 package com.yarihate.quizapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.yarihate.quizapp.dto.Category;
+import com.yarihate.quizapp.dto.Question;
+import com.yarihate.quizapp.dto.Quiz;
+import com.yarihate.quizapp.service.CategoryService;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class QuestionActivity extends AppCompatActivity {
-    private String correctAnswer = "Латвия"; // Правильный ответ
-    private String selectedAnswer = null; // Выбранный ответ
+    private TextView questionText;
+    private LinearLayout answersContainer;
+    private String selectedAnswer;
+    private int currentQuestionIndex = 0; // Счётчик текущего вопроса
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.questions_activity);
-        // Находим элементы интерфейса
-        Button answer1 = findViewById(R.id.answer_1);
-        Button answer2 = findViewById(R.id.answer_2);
-        Button answer3 = findViewById(R.id.answer_3);
-        Button answer4 = findViewById(R.id.answer_4);
+
+
+        int categoryId = getIntent().getIntExtra("category_id", -1);
+        int quizId = getIntent().getIntExtra("quiz_id", -1);
+        if (categoryId == -1 || quizId == -1) {
+            //todo не знаю что тут делать
+            return;
+
+//            Toast.makeText(this, "Ошибка загрузки данных", Toast.LENGTH_SHORT).show();
+//            finish(); // Завершаем Activity, если данные не переданы
+//            return;
+        }
+
+        List<Category> categories = CategoryService.getCategories();
+        List<Quiz> quizzes = categories.stream().filter(v -> v.getId() == categoryId)
+                .findFirst()
+                .map(Category::getQuizzes)
+                .orElse(Collections.emptyList());
+        List<Question> questions = quizzes.stream().filter(v -> v.getId() == quizId)
+                .findFirst()
+                .map(Quiz::getQuestions)
+                .orElse(Collections.emptyList());
+
+        questionText = findViewById(R.id.question_text);
+        answersContainer = findViewById(R.id.answers_container);
         Button submitButton = findViewById(R.id.submit_answer);
 
-        // Установка обработчиков нажатий для вариантов ответов
-        answer1.setOnClickListener(v -> selectedAnswer = answer1.getText().toString());
-        answer2.setOnClickListener(v -> selectedAnswer = answer2.getText().toString());
-        answer3.setOnClickListener(v -> selectedAnswer = answer3.getText().toString());
-        answer4.setOnClickListener(v -> selectedAnswer = answer4.getText().toString());
+        // Отображаем первый вопрос
+        if (!questions.isEmpty()) {
+            displayQuestion(questions.get(currentQuestionIndex));
+        } else {
+            Toast.makeText(this, "Вопросы не найдены", Toast.LENGTH_SHORT).show();
+        }
 
-        // Обработка нажатия на кнопку "Ответить"
+        // Обработчик для кнопки "Ответить"
         submitButton.setOnClickListener(v -> {
             if (selectedAnswer == null) {
-                Toast.makeText(QuestionActivity.this, "Пожалуйста, выберите ответ", Toast.LENGTH_SHORT).show();
-            } else if (selectedAnswer.equals(correctAnswer)) {
-                Toast.makeText(QuestionActivity.this, "Правильный ответ!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Выберите ответ", Toast.LENGTH_SHORT).show();
+            } else if (selectedAnswer.equals(questions.get(currentQuestionIndex).getCorrectAnswer())) {
+                Toast.makeText(this, "Правильно!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(QuestionActivity.this, "Неправильный ответ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Неправильно!", Toast.LENGTH_SHORT).show();
+            }
+
+            // Переход к следующему вопросу
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.size()) {
+                displayQuestion(questions.get(currentQuestionIndex));
+            } else {
+                Toast.makeText(this, "Квиз завершён!", Toast.LENGTH_SHORT).show();
+                finish(); // Завершаем активити после последнего вопроса
             }
         });
+    }
+
+    private void displayQuestion(Question question) {
+        questionText.setText(question.getQuestionText());
+
+        // Очищаем контейнер перед добавлением новых кнопок
+        answersContainer.removeAllViews();
+
+        // Динамически создаём кнопки для каждого варианта ответа
+        for (String answer : question.getAnswerOptions()) {
+            Button answerButton = new Button(this);
+            answerButton.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
+            answerButton.setText(answer);
+            answerButton.setBackgroundResource(R.drawable.answer_background);
+            answerButton.setBackgroundTintList(getResources().getColorStateList(question.getBackgroundColor()));
+            answerButton.setTextColor(question.getTitleColor());
+            answerButton.setOnClickListener(v -> {
+                selectedAnswer = answer;
+                highlightSelectedAnswer(answerButton);
+            });
+
+            answersContainer.addView(answerButton);
+        }
+    }
+
+    private void highlightSelectedAnswer(Button selectedButton) {
+        // Сбрасываем фон всех кнопок
+        for (int i = 0; i < answersContainer.getChildCount(); i++) {
+            View child = answersContainer.getChildAt(i);
+            if (child instanceof Button) {
+                child.setBackgroundResource(R.drawable.answer_background);
+            }
+        }
+        // Выделяем выбранную кнопку
+        selectedButton.setBackgroundColor(Color.LTGRAY);
     }
 }
 

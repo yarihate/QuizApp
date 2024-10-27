@@ -1,65 +1,34 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background_color"
+    android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Question text -->
+    <!-- Контейнер для текста вопроса -->
     <TextView
         android:id="@+id/question_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Какой столицей является Рига?"
+        android:layout_marginBottom="32dp"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:layout_marginBottom="32dp"/>
+        android:textSize="20sp" />
 
-    <!-- Answer Buttons -->
-    <Button
-        android:id="@+id/answer_1"
+    <!-- Контейнер для динамически добавляемых кнопок-ответов -->
+    <LinearLayout
+        android:id="@+id/answers_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Латвия"
-        android:background="@drawable/answer_background"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="32dp"
+        android:orientation="vertical" />
 
-    <Button
-        android:id="@+id/answer_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Литва"
-        android:background="@drawable/answer_background"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="16dp"/>
-
-    <Button
-        android:id="@+id/answer_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Эстония"
-        android:background="@drawable/answer_background"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="16dp"/>
-
-    <Button
-        android:id="@+id/answer_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Польша"
-        android:background="@drawable/answer_background"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="16dp"/>
-
-    <!-- Submit Button -->
+    <!-- Кнопка для отправки ответа -->
     <Button
         android:id="@+id/submit_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ответить"
+        android:layout_marginTop="16dp"
         android:background="@drawable/answer_background"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="32dp"/>
+        android:text="Ответить"
+        android:textColor="@android:color/black" />
 </LinearLayout>

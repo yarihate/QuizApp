@@ -1,7 +1,6 @@
 package com.yarihate.quizapp;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,6 +43,7 @@ public class ChooseQuizActivity extends AppCompatActivity {
             quizCard.setOnClickListener(v -> {
                 Quiz selectedQuiz = (Quiz) v.getTag();
                 Intent intent = new Intent(ChooseQuizActivity.this, QuestionActivity.class);
+                intent.putExtra("category_id", categoryId);
                 intent.putExtra("quiz_id", selectedQuiz.getId());
                 startActivity(intent);
             });

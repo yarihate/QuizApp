@@ -1,5 +1,7 @@
 package com.yarihate.quizapp.dto;
 
+import java.util.List;
+
 public class Quiz {
     private int id;
     private String categoryTitle;
@@ -9,6 +11,7 @@ public class Quiz {
     private int difficulty;
     private int backgroundColor;
     private int titleColor;
+    private List<Question> questions;
 
     private Quiz(Builder builder) {
         this.id = builder.id;
@@ -19,6 +22,7 @@ public class Quiz {
         this.difficulty = builder.difficulty;
         this.backgroundColor = builder.backgroundColor;
         this.titleColor = builder.titleColor;
+        this.questions = builder.questions;
     }
 
     public int getId() {
@@ -53,6 +57,10 @@ public class Quiz {
         return titleColor;
     }
 
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
     public static class Builder {
         private int id;
         private String categoryTitle;
@@ -62,6 +70,7 @@ public class Quiz {
         private int difficulty;
         private int backgroundColor;
         private int titleColor;
+        private List<Question> questions;
 
         public Builder setId(int id) {
             this.id = id;
@@ -100,6 +109,11 @@ public class Quiz {
 
         public Builder setTitleColor(int titleColor) {
             this.titleColor = titleColor;
+            return this;
+        }
+
+        public Builder setQuestions(List<Question> questions) {
+            this.questions = questions;
             return this;
         }
 

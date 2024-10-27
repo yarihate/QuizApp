@@ -2,6 +2,7 @@ package com.yarihate.quizapp.service;
 
 import com.yarihate.quizapp.R;
 import com.yarihate.quizapp.dto.Category;
+import com.yarihate.quizapp.dto.Question;
 import com.yarihate.quizapp.dto.Quiz;
 
 import java.util.ArrayList;
@@ -28,6 +29,43 @@ public class CategoryService {
                         .setDifficulty(0)
                         .setBackgroundColor(R.color.aqua_mint) //todo наследовать из категории
                         .setTitleColor(R.color.black)
+                        .setQuestions(List.of(new Question.Builder()
+                                        .setId(1)
+                                        //.setIcon()
+                                        .setQuestionText("Рига - столица какой страны?")
+                                        .setAnswerOptions(List.of("Латвия", "Литва", "Эстония", "Польша"))
+                                        .setCorrectAnswer("Латвия")
+                                        .setTitleColor(R.color.black)
+                                        .setBackgroundColor(R.color.aqua_mint)
+                                        .build(),
+                                new Question.Builder()
+                                        .setId(3)
+                                        //.setIcon(R.drawable.ic_tallinn)
+                                        .setQuestionText("Таллин - столица какой страны?")
+                                        .setAnswerOptions(List.of("Латвия", "Эстония", "Литва", "Финляндия"))
+                                        .setCorrectAnswer("Эстония")
+                                        .setTitleColor(R.color.black)
+                                        .setBackgroundColor(R.color.aqua_mint)
+                                        .build(),
+                                new Question.Builder()
+                                        .setId(4)
+                                        //.setIcon(R.drawable.ic_flag)
+                                        .setQuestionText("Какой цвет отсутствует на флаге Литвы?")
+                                        .setAnswerOptions(List.of("Жёлтый", "Зелёный", "Красный", "Синий"))
+                                        .setCorrectAnswer("Синий")
+                                        .setTitleColor(R.color.black)
+                                        .setBackgroundColor(R.color.aqua_mint)
+                                        .build(),
+                                new Question.Builder()
+                                        .setId(5)
+                                        //.setIcon(R.drawable.ic_euro)
+                                        .setQuestionText("Какая из стран Балтии первой ввела евро?")
+                                        .setAnswerOptions(List.of("Латвия", "Литва", "Эстония", "Финляндия"))
+                                        .setCorrectAnswer("Эстония")
+                                        .setTitleColor(R.color.black)
+                                        .setBackgroundColor(R.color.aqua_mint)
+                                        .build()
+                        ))
                         .build()))
                 .build());
         categories.add(new Category.Builder().setId(2)
