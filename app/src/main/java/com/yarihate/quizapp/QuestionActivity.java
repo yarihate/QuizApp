@@ -1,5 +1,9 @@
 package com.yarihate.quizapp;
 
+import static com.yarihate.quizapp.dto.Constants.CATEGORY_STATISTIC;
+import static com.yarihate.quizapp.dto.Constants.USER_STATE;
+
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,20 +14,30 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
 import com.yarihate.quizapp.dto.Category;
 import com.yarihate.quizapp.dto.Question;
 import com.yarihate.quizapp.dto.Quiz;
+import com.yarihate.quizapp.dto.state.CategoryStatistic;
+import com.yarihate.quizapp.dto.state.QuizStatistic;
+import com.yarihate.quizapp.dto.state.UserState;
 import com.yarihate.quizapp.service.CategoryService;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class QuestionActivity extends AppCompatActivity {
+    private static final Gson gson = new Gson();
+    private int categoryId;
+    private int quizId;
+    private int totalQuizCount;
+    private int rightAnswersCount = 0;
+    private int questionsCount;
     private TextView questionText;
     private LinearLayout answersContainer;
     private String selectedAnswer;
-    private int currentQuestionIndex = 0; // Счётчик текущего вопроса
+    private int currentQuestionIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +45,8 @@ public class QuestionActivity extends AppCompatActivity {
         setContentView(R.layout.questions_activity);
 
 
-        int categoryId = getIntent().getIntExtra("category_id", -1);
-        int quizId = getIntent().getIntExtra("quiz_id", -1);
+        categoryId = getIntent().getIntExtra("category_id", -1);
+        quizId = getIntent().getIntExtra("quiz_id", -1);
         if (categoryId == -1 || quizId == -1) {
             //todo не знаю что тут делать
             return;
@@ -52,6 +66,9 @@ public class QuestionActivity extends AppCompatActivity {
                 .map(Quiz::getQuestions)
                 .orElse(Collections.emptyList());
 
+        totalQuizCount = quizzes.size();
+        questionsCount = questions.size();
+
         questionText = findViewById(R.id.question_text);
         answersContainer = findViewById(R.id.answers_container);
         Button submitButton = findViewById(R.id.submit_answer);
@@ -68,6 +85,7 @@ public class QuestionActivity extends AppCompatActivity {
             if (selectedAnswer == null) {
                 Toast.makeText(this, "Выберите ответ", Toast.LENGTH_SHORT).show();
             } else if (selectedAnswer.equals(questions.get(currentQuestionIndex).getCorrectAnswer())) {
+                rightAnswersCount++;
                 Toast.makeText(this, "Правильно!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Неправильно!", Toast.LENGTH_SHORT).show();
@@ -120,6 +138,35 @@ public class QuestionActivity extends AppCompatActivity {
         }
         // Выделяем выбранную кнопку
         selectedButton.setBackgroundColor(Color.LTGRAY);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences preferences = getSharedPreferences(USER_STATE, MODE_PRIVATE);
+        String categoryStatisticJson = preferences.getString(CATEGORY_STATISTIC, "{}");
+
+        UserState userState = gson.fromJson(categoryStatisticJson, UserState.class);
+
+        List<CategoryStatistic> categoryStatistics = userState.getCategoryStatistics();
+
+        Optional<CategoryStatistic> categoryStatisticOpt = categoryStatistics.stream()
+                .filter(v -> v.getCategoryId() == categoryId)
+                .findFirst();
+        if (categoryStatisticOpt.isPresent()) {
+            CategoryStatistic categoryStatistic = categoryStatisticOpt.get();
+            QuizStatistic quizStatistic = new QuizStatistic(quizId, questionsCount, rightAnswersCount);
+            categoryStatistic.addQuizStat(quizStatistic);
+        } else {
+            QuizStatistic quizStatistic = new QuizStatistic(quizId, questionsCount, rightAnswersCount);
+            CategoryStatistic categoryStatistic = new CategoryStatistic(categoryId, totalQuizCount, quizStatistic);
+            categoryStatistics.add(categoryStatistic);
+        }
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(CATEGORY_STATISTIC, gson.toJson(userState));
+        editor.apply();
     }
 }
 
