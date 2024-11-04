@@ -4,6 +4,7 @@ package com.yarihate.quizapp.dto.state;
 import static com.yarihate.quizapp.dto.Constants.MIN_PERCENT_FOR_1_STAR;
 import static com.yarihate.quizapp.dto.Constants.MIN_PERCENT_FOR_2_STARS;
 import static com.yarihate.quizapp.dto.Constants.MIN_PERCENT_FOR_3_STARS;
+import static com.yarihate.quizapp.dto.Constants.STARS_COUNT_FOR_COMPLETE_QUIZ;
 
 public class QuizStatistic {
     private final int quizId;
@@ -16,11 +17,11 @@ public class QuizStatistic {
     }
 
     public int getQuizId() {
-        return quizId;
+        return this.quizId;
     }
 
     public int getStarsCount() {
-        return starsCount;
+        return this.starsCount;
     }
 
     private static int countStars(int totalQuestionsCount, int rightAnswersCount) {
@@ -34,5 +35,9 @@ public class QuizStatistic {
         } else {
             return 3;
         }
+    }
+
+    public boolean isPassed() {
+        return this.starsCount == STARS_COUNT_FOR_COMPLETE_QUIZ;
     }
 }

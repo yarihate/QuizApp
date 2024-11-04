@@ -56,7 +56,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         categoryStatViewsByCategory.forEach((category, categoryStatView) -> {
-            categoryStatView.setText(String.format("%s/%s", getCategoryStatisticService.getQuizCompletedQuantity(category.getId()), category.getQuizQuantity()));
+            categoryStatView.setText(String.format("Пройдено %s из %s", getCategoryStatisticService.getQuizCompletedQuantity(category.getId()), category.getQuizQuantity()));
         });
     }
 
@@ -105,7 +105,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         // Статистика
         TextView categoryStatView = new TextView(this);
         categoryStatView.setLayoutParams(titleParams);
-        categoryStatView.setText(String.format("%s/%s", getCategoryStatisticService.getQuizCompletedQuantity(category.getId()), category.getQuizQuantity()));
+        categoryStatView.setText(String.format("Пройдено %s из %s", getCategoryStatisticService.getQuizCompletedQuantity(category.getId()), category.getQuizQuantity()));
         categoryStatView.setTextColor(category.getSubtitleColor());
         categoryStatView.setTextSize(12);
         categoryStatViewsByCategory.put(category, categoryStatView);

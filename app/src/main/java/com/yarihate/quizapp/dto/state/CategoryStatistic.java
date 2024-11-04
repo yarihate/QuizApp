@@ -1,7 +1,5 @@
 package com.yarihate.quizapp.dto.state;
 
-import static com.yarihate.quizapp.dto.Constants.STARS_COUNT_FOR_COMPLETE_QUIZ;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,18 +19,15 @@ public class CategoryStatistic {
     public void addQuizStat(QuizStatistic quizStatistic) {
         QuizStatistic existingQuizStat = this.quizStatistics.get(quizStatistic.getQuizId());
         if (existingQuizStat != null) {
-            if (existingQuizStat.getStarsCount() == STARS_COUNT_FOR_COMPLETE_QUIZ) {
-                return; //do not update quizPassedCount, if quiz was already passed
-            } else {
+            if (existingQuizStat.getStarsCount() < quizStatistic.getStarsCount()) {
                 this.quizStatistics.put(quizStatistic.getQuizId(), quizStatistic);
-                if (quizStatistic.getStarsCount() == STARS_COUNT_FOR_COMPLETE_QUIZ) {
+                if (quizStatistic.isPassed()) {
                     quizPassedCount++;
                 }
-                //todo а если было 2 звезды, а стала 1, то обновлять отображение звезд?
             }
         } else {
             this.quizStatistics.put(quizStatistic.getQuizId(), quizStatistic);
-            if (quizStatistic.getStarsCount() == STARS_COUNT_FOR_COMPLETE_QUIZ) {
+            if (quizStatistic.isPassed()) {
                 quizPassedCount++;
             }
         }
