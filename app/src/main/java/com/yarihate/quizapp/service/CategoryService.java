@@ -8,7 +8,13 @@ import com.yarihate.quizapp.dto.Quiz;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class CategoryService {
+    @Inject
+    public CategoryService() {
+    }
+
     private static final List<Category> categories;
 
     static {
@@ -204,7 +210,7 @@ public class CategoryService {
                 .build());
     }
 
-    public static List<Category> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 }

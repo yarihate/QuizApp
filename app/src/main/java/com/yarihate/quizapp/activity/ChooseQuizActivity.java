@@ -1,4 +1,4 @@
-package com.yarihate.quizapp;
+package com.yarihate.quizapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.yarihate.quizapp.R;
 import com.yarihate.quizapp.dto.Category;
 import com.yarihate.quizapp.dto.Quiz;
 import com.yarihate.quizapp.service.CategoryService;
@@ -15,7 +16,15 @@ import com.yarihate.quizapp.service.CategoryService;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ChooseQuizActivity extends AppCompatActivity {
+    @Inject
+    CategoryService categoryService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +38,7 @@ public class ChooseQuizActivity extends AppCompatActivity {
             return;
         }
 
-        List<Category> categories = CategoryService.getCategories();
+        List<Category> categories = categoryService.getCategories();
         List<Quiz> quizzes = categories.stream().filter(v -> v.getId() == categoryId)
                 .findFirst()
                 .map(Category::getQuizzes)

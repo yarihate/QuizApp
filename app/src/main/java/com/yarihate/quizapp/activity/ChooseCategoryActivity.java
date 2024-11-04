@@ -1,4 +1,4 @@
-package com.yarihate.quizapp;
+package com.yarihate.quizapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +8,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.yarihate.quizapp.R;
 import com.yarihate.quizapp.dto.Category;
 import com.yarihate.quizapp.service.CategoryService;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ChooseCategoryActivity extends AppCompatActivity {
+    @Inject
+    CategoryService categoryService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +30,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.choose_category_activity);
         LinearLayout categoryLayout = findViewById(R.id.category_layout);
 
-        List<Category> categories = CategoryService.getCategories();
+        List<Category> categories = categoryService.getCategories();
 
         categories.forEach(category -> {
             LinearLayout categoryCard = createCategoryCard(category);

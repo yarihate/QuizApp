@@ -1,4 +1,4 @@
-package com.yarihate.quizapp;
+package com.yarihate.quizapp.activity;
 
 import static com.yarihate.quizapp.dto.Constants.USER_STATE;
 
@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.yarihate.quizapp.R;
 import com.yarihate.quizapp.dto.Category;
 import com.yarihate.quizapp.dto.Question;
 import com.yarihate.quizapp.dto.Quiz;
@@ -23,7 +24,15 @@ import com.yarihate.quizapp.service.UpdateCategoryStatisticService;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class QuestionActivity extends AppCompatActivity {
+    @Inject
+    CategoryService categoryService;
+
     private int categoryId;
     private int quizId;
     private int totalQuizCount;
@@ -51,7 +60,7 @@ public class QuestionActivity extends AppCompatActivity {
 //            return;
         }
 
-        List<Category> categories = CategoryService.getCategories();
+        List<Category> categories = categoryService.getCategories();
         List<Quiz> quizzes = categories.stream().filter(v -> v.getId() == categoryId)
                 .findFirst()
                 .map(Category::getQuizzes)
