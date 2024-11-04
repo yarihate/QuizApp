@@ -11,8 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.yarihate.quizapp.R;
 import com.yarihate.quizapp.dto.Category;
 import com.yarihate.quizapp.service.CategoryService;
+import com.yarihate.quizapp.service.GetCategoryStatisticService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -22,6 +25,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class ChooseCategoryActivity extends AppCompatActivity {
     @Inject
     CategoryService categoryService;
+    @Inject
+    GetCategoryStatisticService getCategoryStatisticService;
+    private final Map<Category, TextView> categoryStatViewsByCategory = new HashMap<>();
 
 
     @Override
@@ -43,6 +49,14 @@ public class ChooseCategoryActivity extends AppCompatActivity {
                 intent.putExtra("category_id", selectedCategory.getId());
                 startActivity(intent);
             });
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        categoryStatViewsByCategory.forEach((category, categoryStatView) -> {
+            categoryStatView.setText(String.format("%s/%s", getCategoryStatisticService.getQuizCompletedQuantity(category.getId()), category.getQuizQuantity()));
         });
     }
 
@@ -91,9 +105,10 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         // Статистика
         TextView categoryStatView = new TextView(this);
         categoryStatView.setLayoutParams(titleParams);
-        categoryStatView.setText(String.format("%s/%s", category.getQuizQuantity(), category.getQuizCompletedQuantity()));
+        categoryStatView.setText(String.format("%s/%s", getCategoryStatisticService.getQuizCompletedQuantity(category.getId()), category.getQuizQuantity()));
         categoryStatView.setTextColor(category.getSubtitleColor());
         categoryStatView.setTextSize(12);
+        categoryStatViewsByCategory.put(category, categoryStatView);
 
         // Добавляем TextViews во внутренний LinearLayout
         textLayout.addView(titleView);

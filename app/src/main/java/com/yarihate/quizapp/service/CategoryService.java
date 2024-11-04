@@ -12,18 +12,16 @@ import javax.inject.Inject;
 
 public class CategoryService {
     @Inject
-    public CategoryService() {
-    }
+    GetCategoryStatisticService getCategoryStatisticService;
+    private final List<Category> categories = new ArrayList<>();
 
-    private static final List<Category> categories;
-
-    static {
-        categories = new ArrayList<>();
+    @Inject
+    public CategoryService(GetCategoryStatisticService getCategoryStatisticService) {
         categories.add(new Category.Builder().setId(1)
                 .setName("География")
                 .setIcon(R.drawable.ic_geography)
                 .setQuizQuantity(20)
-                .setQuizCompletedQuantity(0)
+                .setQuizCompletedQuantity(getCategoryStatisticService.getQuizCompletedQuantity(1))
                 .setBackgroundColor(R.color.aqua_mint)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
@@ -79,7 +77,7 @@ public class CategoryService {
                 .setName("История")
                 .setIcon(R.drawable.ic_history)
                 .setQuizQuantity(20)
-                .setQuizCompletedQuantity(0)
+                .setQuizCompletedQuantity(getCategoryStatisticService.getQuizCompletedQuantity(2))
                 .setBackgroundColor(R.color.lavender)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
@@ -98,7 +96,7 @@ public class CategoryService {
                 .setName("Английский язык")
                 .setIcon(R.drawable.ic_english_lang)
                 .setQuizQuantity(20)
-                .setQuizCompletedQuantity(0)
+                .setQuizCompletedQuantity(getCategoryStatisticService.getQuizCompletedQuantity(3))
                 .setBackgroundColor(R.color.blush)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
@@ -117,7 +115,7 @@ public class CategoryService {
                 .setName("Флаги")
                 .setIcon(R.drawable.ic_flags)
                 .setQuizQuantity(20)
-                .setQuizCompletedQuantity(0)
+                .setQuizCompletedQuantity(getCategoryStatisticService.getQuizCompletedQuantity(4))
                 .setBackgroundColor(R.color.minty)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
@@ -136,7 +134,7 @@ public class CategoryService {
                 .setName("Животные")
                 .setIcon(R.drawable.ic_animals)
                 .setQuizQuantity(20)
-                .setQuizCompletedQuantity(0)
+                .setQuizCompletedQuantity(getCategoryStatisticService.getQuizCompletedQuantity(5))
                 .setBackgroundColor(R.color.goldie)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
@@ -155,7 +153,7 @@ public class CategoryService {
                 .setName("Русский язык")
                 .setIcon(R.drawable.ic_russian_lang)
                 .setQuizQuantity(20)
-                .setQuizCompletedQuantity(0)
+                .setQuizCompletedQuantity(getCategoryStatisticService.getQuizCompletedQuantity(6))
                 .setBackgroundColor(R.color.sky_lite)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
@@ -174,7 +172,7 @@ public class CategoryService {
                 .setName("Музыка")
                 .setIcon(R.drawable.ic_music)
                 .setQuizQuantity(20)
-                .setQuizCompletedQuantity(0)
+                .setQuizCompletedQuantity(getCategoryStatisticService.getQuizCompletedQuantity(7))
                 .setBackgroundColor(R.color.lime_mist)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
@@ -193,7 +191,7 @@ public class CategoryService {
                 .setName("Кино")
                 .setIcon(R.drawable.ic_movie)
                 .setQuizQuantity(20)
-                .setQuizCompletedQuantity(0)
+                .setQuizCompletedQuantity(getCategoryStatisticService.getQuizCompletedQuantity(8))
                 .setBackgroundColor(R.color.lime_mist)
                 .setTitleColor(R.color.black)
                 .setSubtitleColor(R.color.black)
@@ -209,6 +207,7 @@ public class CategoryService {
                         .build()))
                 .build());
     }
+
 
     public List<Category> getCategories() {
         return categories;
