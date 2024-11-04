@@ -51,7 +51,8 @@ public class UpdateCategoryStatisticService {
             categoryStatistic.addQuizStat(quizStatistic);
         } else {
             QuizStatistic quizStatistic = new QuizStatistic(quizId, questionsCount, rightAnswersCount);
-            CategoryStatistic categoryStatistic = new CategoryStatistic(categoryId, totalQuizCount, quizStatistic);
+            CategoryStatistic categoryStatistic = new CategoryStatistic(categoryId, totalQuizCount);
+            categoryStatistic.addQuizStat(quizStatistic);
             categoryStatistics.add(categoryStatistic);
         }
 

@@ -27,7 +27,7 @@ public class GetCategoryStatisticService {
         preferences = context.getSharedPreferences(USER_STATE, MODE_PRIVATE);
     }
 
-    public int getQuizCompletedQuantity(int categoryId) {
+    public int getQuizCompletedQuantity(int categoryId) { //todo слишком часто вызывается, посмотреть в дебаге почему так
         String categoryStatisticJson = preferences.getString(CATEGORY_STATISTIC, "{}");
 
         UserState userState = gson.fromJson(categoryStatisticJson, UserState.class);
