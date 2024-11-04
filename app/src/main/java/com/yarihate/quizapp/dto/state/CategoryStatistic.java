@@ -33,6 +33,10 @@ public class CategoryStatistic {
         }
     }
 
+    public QuizStatistic getQuizStat(int quizId) {
+        return this.quizStatistics.get(quizId);
+    }
+
     public int getCategoryId() {
         return categoryId;
     }

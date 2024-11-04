@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Quiz {
     private int id;
-    private String categoryTitle;
+    private int categoryId;
     private String title;
     private int icon;
     private int starsQuantity;
@@ -15,7 +15,7 @@ public class Quiz {
 
     private Quiz(Builder builder) {
         this.id = builder.id;
-        this.categoryTitle = builder.categoryTitle;
+        this.categoryId = builder.categoryId;
         this.title = builder.title;
         this.icon = builder.icon;
         this.starsQuantity = builder.starsQuantity;
@@ -29,8 +29,8 @@ public class Quiz {
         return id;
     }
 
-    public String getCategoryTitle() {
-        return categoryTitle;
+    public int getCategoryId() {
+        return categoryId;
     }
 
     public String getTitle() {
@@ -63,7 +63,7 @@ public class Quiz {
 
     public static class Builder {
         private int id;
-        private String categoryTitle;
+        private int categoryId;
         private String title;
         private int icon;
         private int starsQuantity;
@@ -77,8 +77,8 @@ public class Quiz {
             return this;
         }
 
-        public Builder setCategoryTitle(String categoryTitle) {
-            this.categoryTitle = categoryTitle;
+        public Builder setCategoryId(int categoryId) {
+            this.categoryId = categoryId;
             return this;
         }
 
