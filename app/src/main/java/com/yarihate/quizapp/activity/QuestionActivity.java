@@ -146,7 +146,6 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // SharedPreferences preferences = getSharedPreferences(USER_STATE, MODE_PRIVATE);
         updateCategoryStatisticService.update(new UpdateCategoryStatistic.Builder()
                 .categoryId(categoryId)
                 .quizId(quizId)

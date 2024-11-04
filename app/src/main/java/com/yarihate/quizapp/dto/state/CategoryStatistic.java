@@ -20,9 +20,16 @@ public class CategoryStatistic {
     }
 
     public void addQuizStat(QuizStatistic quizStatistic) {
-        this.quizStatistics.put(quizStatistic.getQuizId(), quizStatistic);
-        if (quizStatistic.getStarsCount() == STARS_COUNT_FOR_COMPLETE_QUIZ) {
-            quizPassedCount++;
+        QuizStatistic existingQuizStat = this.quizStatistics.get(quizStatistic.getQuizId());
+        if (existingQuizStat != null) {
+            if (quizStatistic.getStarsCount() == STARS_COUNT_FOR_COMPLETE_QUIZ) {
+                return; //do not update quizPassedCount, if quiz was already passed
+            } //todo а если было 2 звезды, а стала 1, то обновлять отображение звезд?
+        } else {
+            this.quizStatistics.put(quizStatistic.getQuizId(), quizStatistic);
+            if (quizStatistic.getStarsCount() == STARS_COUNT_FOR_COMPLETE_QUIZ) {
+                quizPassedCount++;
+            }
         }
     }
 
