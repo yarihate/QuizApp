@@ -1,6 +1,5 @@
 package com.yarihate.quizapp;
 
-import static com.yarihate.quizapp.dto.Constants.CATEGORY_STATISTIC;
 import static com.yarihate.quizapp.dto.Constants.USER_STATE;
 
 import android.content.SharedPreferences;
@@ -14,21 +13,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
 import com.yarihate.quizapp.dto.Category;
 import com.yarihate.quizapp.dto.Question;
 import com.yarihate.quizapp.dto.Quiz;
-import com.yarihate.quizapp.dto.state.CategoryStatistic;
-import com.yarihate.quizapp.dto.state.QuizStatistic;
-import com.yarihate.quizapp.dto.state.UserState;
+import com.yarihate.quizapp.dto.state.UpdateCategoryStatistic;
 import com.yarihate.quizapp.service.CategoryService;
+import com.yarihate.quizapp.service.UpdateCategoryStatisticService;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class QuestionActivity extends AppCompatActivity {
-    private static final Gson gson = new Gson();
     private int categoryId;
     private int quizId;
     private int totalQuizCount;
@@ -143,30 +138,14 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
         SharedPreferences preferences = getSharedPreferences(USER_STATE, MODE_PRIVATE);
-        String categoryStatisticJson = preferences.getString(CATEGORY_STATISTIC, "{}");
-
-        UserState userState = gson.fromJson(categoryStatisticJson, UserState.class);
-
-        List<CategoryStatistic> categoryStatistics = userState.getCategoryStatistics();
-
-        Optional<CategoryStatistic> categoryStatisticOpt = categoryStatistics.stream()
-                .filter(v -> v.getCategoryId() == categoryId)
-                .findFirst();
-        if (categoryStatisticOpt.isPresent()) {
-            CategoryStatistic categoryStatistic = categoryStatisticOpt.get();
-            QuizStatistic quizStatistic = new QuizStatistic(quizId, questionsCount, rightAnswersCount);
-            categoryStatistic.addQuizStat(quizStatistic);
-        } else {
-            QuizStatistic quizStatistic = new QuizStatistic(quizId, questionsCount, rightAnswersCount);
-            CategoryStatistic categoryStatistic = new CategoryStatistic(categoryId, totalQuizCount, quizStatistic);
-            categoryStatistics.add(categoryStatistic);
-        }
-
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(CATEGORY_STATISTIC, gson.toJson(userState));
-        editor.apply();
+        UpdateCategoryStatisticService.update(preferences, new UpdateCategoryStatistic.Builder()
+                .categoryId(categoryId)
+                .quizId(quizId)
+                .questionsCount(questionsCount)
+                .rightAnswersCount(rightAnswersCount)
+                .totalQuizCount(totalQuizCount)
+                .build());
     }
 }
 

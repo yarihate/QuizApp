@@ -38,6 +38,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     }
 
     private LinearLayout createCategoryCard(Category category) {
+        // Внешний LinearLayout
         LinearLayout card = new LinearLayout(this);
         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -50,6 +51,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         card.setBackgroundResource(R.drawable.card_background);
         card.setBackgroundTintList(getResources().getColorStateList(category.getBackgroundColor()));
 
+        // Иконка
         ImageView icon = new ImageView(this);
         icon.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -57,6 +59,15 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         ));
         icon.setImageResource(category.getIcon());
 
+        // Внутренний LinearLayout для titleView и categoryStatView
+        LinearLayout textLayout = new LinearLayout(this);
+        textLayout.setOrientation(LinearLayout.VERTICAL);
+        textLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
+
+        // Заголовок
         TextView titleView = new TextView(this);
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -68,9 +79,22 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         titleView.setTextColor(category.getTitleColor());
         titleView.setTextSize(18);
 
+        // Статистика
+        TextView categoryStatView = new TextView(this);
+        categoryStatView.setLayoutParams(titleParams);
+        categoryStatView.setText(String.format("%s/%s", category.getQuizQuantity(), category.getQuizCompletedQuantity()));
+        categoryStatView.setTextColor(category.getSubtitleColor());
+        categoryStatView.setTextSize(12);
+
+        // Добавляем TextViews во внутренний LinearLayout
+        textLayout.addView(titleView);
+        textLayout.addView(categoryStatView);
+
+        // Добавляем иконку и внутренний LinearLayout в card
         card.addView(icon);
-        card.addView(titleView);
+        card.addView(textLayout);
 
         return card;
     }
+
 }

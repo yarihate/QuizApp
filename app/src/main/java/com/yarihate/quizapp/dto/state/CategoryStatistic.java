@@ -19,10 +19,6 @@ public class CategoryStatistic {
         this.quizStatistics.put(quizStatistics.getQuizId(), quizStatistics);
     }
 
-//    public Optional<QuizStatistic> getQuizStat(int quizId) {
-//        return Optional.ofNullable(this.quizStatistics.get(quizId));
-//    }
-
     public void addQuizStat(QuizStatistic quizStatistic) {
         this.quizStatistics.put(quizStatistic.getQuizId(), quizStatistic);
         if (quizStatistic.getStarsCount() == STARS_COUNT_FOR_COMPLETE_QUIZ) {
