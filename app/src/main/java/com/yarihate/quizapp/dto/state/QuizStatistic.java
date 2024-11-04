@@ -25,6 +25,7 @@ public class QuizStatistic {
     }
 
     private static int countStars(float totalQuestionsCount, float rightAnswersCount) {
+        if (totalQuestionsCount == 0) return 0;
         float passedPercent = (rightAnswersCount / totalQuestionsCount) * 100;
         if (passedPercent < MIN_PERCENT_FOR_1_STAR) {
             return 0;
