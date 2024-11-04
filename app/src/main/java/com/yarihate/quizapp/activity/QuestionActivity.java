@@ -1,8 +1,5 @@
 package com.yarihate.quizapp.activity;
 
-import static com.yarihate.quizapp.dto.Constants.USER_STATE;
-
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +29,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class QuestionActivity extends AppCompatActivity {
     @Inject
     CategoryService categoryService;
+    @Inject
+    UpdateCategoryStatisticService updateCategoryStatisticService;
 
     private int categoryId;
     private int quizId;
@@ -147,8 +146,8 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences preferences = getSharedPreferences(USER_STATE, MODE_PRIVATE);
-        UpdateCategoryStatisticService.update(preferences, new UpdateCategoryStatistic.Builder()
+        // SharedPreferences preferences = getSharedPreferences(USER_STATE, MODE_PRIVATE);
+        updateCategoryStatisticService.update(new UpdateCategoryStatistic.Builder()
                 .categoryId(categoryId)
                 .quizId(quizId)
                 .questionsCount(questionsCount)
