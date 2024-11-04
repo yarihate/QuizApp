@@ -1,5 +1,6 @@
 package com.yarihate.quizapp.activity;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -124,23 +125,26 @@ public class QuestionActivity extends AppCompatActivity {
             answerButton.setTextColor(question.getTitleColor());
             answerButton.setOnClickListener(v -> {
                 selectedAnswer = answer;
-                highlightSelectedAnswer(answerButton);
+                highlightSelectedAnswer(answerButton, question.getBackgroundColor());
             });
 
             answersContainer.addView(answerButton);
         }
     }
 
-    private void highlightSelectedAnswer(Button selectedButton) {
-        // Сбрасываем фон всех кнопок
+    private void highlightSelectedAnswer(Button selectedButton, int questionBackGroundColour) {
+        // Проходим по всем кнопкам и сбрасываем им цвет на исходный
         for (int i = 0; i < answersContainer.getChildCount(); i++) {
             View child = answersContainer.getChildAt(i);
             if (child instanceof Button) {
-                child.setBackgroundResource(R.drawable.answer_background);
+                Button button = (Button) child;
+                button.setBackgroundResource(R.drawable.answer_background); // Фон с закруглёнными углами
+                button.setBackgroundTintList(getResources().getColorStateList(questionBackGroundColour));
             }
         }
-        // Выделяем выбранную кнопку
-        selectedButton.setBackgroundColor(Color.LTGRAY);
+
+        // Устанавливаем цвет только выбранной кнопке
+        selectedButton.setBackgroundTintList(ColorStateList.valueOf(Color.CYAN));
     }
 
     @Override
