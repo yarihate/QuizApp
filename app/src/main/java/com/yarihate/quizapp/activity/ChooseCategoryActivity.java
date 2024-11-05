@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.flexbox.FlexboxLayout;
 import com.yarihate.quizapp.R;
 import com.yarihate.quizapp.dto.Category;
 import com.yarihate.quizapp.service.CategoryService;
@@ -34,7 +35,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_category_activity);
-        LinearLayout categoryLayout = findViewById(R.id.category_layout);
+        FlexboxLayout categoryLayout = findViewById(R.id.category_layout);
 
         List<Category> categories = categoryService.getCategories();
 
@@ -64,12 +65,12 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         // Внешний LinearLayout
         LinearLayout card = new LinearLayout(this);
         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                430,
+                430
         );
-        cardParams.setMargins(0, 0, 0, 16);
+        cardParams.setMargins(0, 0, 50, 50);
         card.setLayoutParams(cardParams);
-        card.setOrientation(LinearLayout.HORIZONTAL);
+        card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(16, 16, 16, 16);
         card.setBackgroundResource(R.drawable.card_background);
         card.setBackgroundTintList(getResources().getColorStateList(category.getBackgroundColor()));

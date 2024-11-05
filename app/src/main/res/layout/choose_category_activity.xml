@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background_color"
     android:orientation="vertical">
 
@@ -9,10 +10,12 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <LinearLayout
+        <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/category_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start">
+        </com.google.android.flexbox.FlexboxLayout>
     </ScrollView>
 </LinearLayout>
