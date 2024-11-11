@@ -9,7 +9,7 @@ public class Category { //todo можно разделить на состоян
     private int quizQuantity;
     private int quizCompletedQuantity;
     private int backgroundColor;
-    private int titleColor;
+    private int titleColor; //todo убрать
     private int subtitleColor;
     private List<Quiz> quizzes;
 

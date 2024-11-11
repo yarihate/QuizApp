@@ -1,7 +1,11 @@
 package com.yarihate.quizapp.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -40,7 +44,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         List<Category> categories = categoryService.getCategories();
 
         categories.forEach(category -> {
-            LinearLayout categoryCard = createCategoryCard(category);
+            FrameLayout categoryCard = createCategoryCard(category);
             categoryCard.setTag(category);
             categoryLayout.addView(categoryCard);
 
@@ -61,37 +65,49 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         });
     }
 
-    private LinearLayout createCategoryCard(Category category) {
-        // Внешний LinearLayout
-        LinearLayout card = new LinearLayout(this);
-        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+    private FrameLayout createCategoryCard(Category category) {
+        // Create FrameLayout to wrap card layout for more control over positioning
+        FrameLayout frameLayout = new FrameLayout(this);
+        FrameLayout.LayoutParams frameParams = new FrameLayout.LayoutParams(
                 430,
                 430
         );
-        cardParams.setMargins(0, 0, 50, 50);
+        frameParams.setMargins(0, 0, 50, 50);
+        frameLayout.setLayoutParams(frameParams);
+        frameLayout.setPadding(16, 16, 16, 16);
+        frameLayout.setBackgroundResource(R.drawable.card_background);
+        frameLayout.setBackgroundTintList(getResources().getColorStateList(category.getBackgroundColor()));
+
+        // Outer LinearLayout for card contents
+        LinearLayout card = new LinearLayout(this);
+        FrameLayout.LayoutParams cardParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+        );
         card.setLayoutParams(cardParams);
         card.setOrientation(LinearLayout.VERTICAL);
-        card.setPadding(16, 16, 16, 16);
-        card.setBackgroundResource(R.drawable.card_background);
-        card.setBackgroundTintList(getResources().getColorStateList(category.getBackgroundColor()));
 
-        // Иконка
+        // Icon
         ImageView icon = new ImageView(this);
         icon.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                270,
+                270
         ));
         icon.setImageResource(category.getIcon());
+        card.addView(icon);
 
-        // Внутренний LinearLayout для titleView и categoryStatView
+        // Inner LinearLayout for titleView and categoryStatView
         LinearLayout textLayout = new LinearLayout(this);
         textLayout.setOrientation(LinearLayout.VERTICAL);
-        textLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        ));
+        FrameLayout.LayoutParams textLayoutParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                Gravity.BOTTOM
+        );
+        textLayoutParams.setMargins(0,0,0,50);
+        textLayout.setLayoutParams(textLayoutParams);
 
-        // Заголовок
+        // Title
         TextView titleView = new TextView(this);
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -100,10 +116,11 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         titleParams.setMarginStart(8);
         titleView.setLayoutParams(titleParams);
         titleView.setText(category.getTitle());
-        titleView.setTextColor(category.getTitleColor());
+        titleView.setTextColor(Color.BLACK);
         titleView.setTextSize(18);
+        titleView.setTypeface(titleView.getTypeface(), Typeface.BOLD);
 
-        // Статистика
+        // Statistics
         TextView categoryStatView = new TextView(this);
         categoryStatView.setLayoutParams(titleParams);
         categoryStatView.setText(String.format("Пройдено %s из %s", getCategoryStatisticService.getQuizCompletedQuantity(category.getId()), category.getQuizQuantity()));
@@ -111,15 +128,14 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         categoryStatView.setTextSize(12);
         categoryStatViewsByCategory.put(category, categoryStatView);
 
-        // Добавляем TextViews во внутренний LinearLayout
+        // Add TextViews to the inner LinearLayout
         textLayout.addView(titleView);
         textLayout.addView(categoryStatView);
 
-        // Добавляем иконку и внутренний LinearLayout в card
-        card.addView(icon);
-        card.addView(textLayout);
+        // Add the card layout and textLayout to the FrameLayout
+        frameLayout.addView(card);
+        frameLayout.addView(textLayout);
 
-        return card;
+        return frameLayout;
     }
-
 }
