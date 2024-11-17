@@ -29,6 +29,10 @@ public class GetQuizStatisticService {
     }
 
     public int getQuizStarsQuantity(Quiz quiz) {
+        return getQuizStarsQuantity(quiz.getCategoryId(), quiz.getId());
+    }
+
+    public int getQuizStarsQuantity(int categoryId, int quizId) {
         String categoryStatisticJson = preferences.getString(CATEGORY_STATISTIC, "{}");
 
         UserState userState = gson.fromJson(categoryStatisticJson, UserState.class);
@@ -36,9 +40,9 @@ public class GetQuizStatisticService {
         List<CategoryStatistic> categoryStatistics = userState.getCategoryStatistics();
 
         return categoryStatistics.stream()
-                .filter(v -> v.getCategoryId() == quiz.getCategoryId())
+                .filter(v -> v.getCategoryId() == categoryId)
                 .findFirst()
-                .map(v -> v.getQuizStat(quiz.getId()))
+                .map(v -> v.getQuizStat(quizId))
                 .map(QuizStatistic::getStarsCount)
                 .orElse(0);
     }

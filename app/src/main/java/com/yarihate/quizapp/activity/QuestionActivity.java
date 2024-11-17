@@ -1,5 +1,8 @@
 package com.yarihate.quizapp.activity;
 
+import static com.yarihate.quizapp.service.CountStarsService.countStars;
+
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -100,7 +103,9 @@ public class QuestionActivity extends AppCompatActivity {
                 if (currentQuestionIndex < questions.size()) {
                     displayQuestion(questions.get(currentQuestionIndex));
                 } else {
-                    Toast.makeText(this, "Квиз завершён!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(QuestionActivity.this, ShowResultActivity.class);
+                    intent.putExtra("current_stars_count", countStars(questionsCount, rightAnswersCount));
+                    startActivity(intent);
                     finish();
                 }
             }, 1000);
