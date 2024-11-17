@@ -39,6 +39,6 @@ public class QuizStatistic {
     }
 
     public boolean isPassed() {
-        return this.starsCount == STARS_COUNT_FOR_COMPLETE_QUIZ;
+        return this.starsCount >= STARS_COUNT_FOR_COMPLETE_QUIZ;
     }
 }
